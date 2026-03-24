@@ -41,5 +41,5 @@ DIA 17/03/26:
     $objeto = new stdClass(); // objeto ou classe
     $objUsuario = new Usuario();
 
-git flow 222
+git flow
 - criação da branch dev
