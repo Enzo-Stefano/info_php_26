@@ -1,7 +1,7 @@
 # info_php_26
 
 Básico:
-- open folder -> /var/www/html -> login github -> link rep "info_php_26" -> VScode -> git clone [link rep]
+- open folder -> /var/www/html -> login github -> link rep "info_php_26" -> VScode -> git clone (https://github.com/Enzo-Stefano/info_php_26)
 - Senha computadores = qwe123! (ou "Qwe123!");
 - "localhost/" == "/var/www/html/" 
 
@@ -42,3 +42,4 @@ DIA 17/03/26:
     $objUsuario = new Usuario();
 
 git flow 222
+- criação da branch dev
