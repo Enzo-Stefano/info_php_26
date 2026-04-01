@@ -90,13 +90,25 @@ $msg = "Aprovado";
 $nota1 = 10;
 $nota2 = 5;
 $nota3 = 5;
-
-$media = round( ($nota1 + $nota2 + $nota3)/3, 2) ;
+$media = ($nota1 + $nota2 + $nota3)/3;
+$mediaArredondada = round($media, 2);
 
 if($media<7){
     $msg = "Reprovado";
 }
-echo "<br><br>Você foi $msg com a média de $media";
+echo "<br><br>Você foi $msg<br>Médias:<br>Normal: $media";
+
+/**
+ * Nota do Aluno média harmônica
+*/
+$mediaHarmonica = 3/((1/$nota1)+(1/$nota2)+(1/$nota3));
+echo "<br>Harmônica: $mediaHarmonica";
+/**
+ * Nota do Aluno média ponderada
+*/
+$mediaPonderada =(($nota1*10)+($nota2*10)+($nota3*10))/(10+10+10);
+echo "<br>Ponderada: $mediaPonderada";
+
 
 echo "<br><br>";
 echo Date("d/m/Y  H:i:s"); // Brasil-sil-sil
