@@ -1,8 +1,7 @@
 # info_php_26
 
 Básico:
-- open folder -> /var/www/html -> login github -> link rep "info_php_26" -> VScode -> git clone (https://github.com/Enzo-Stefano/info_php_26)
-- Senha computadores = qwe123! (ou "Qwe123!");
+- open folder -> /var/www/html -> login github -> link rep "info_php_26" -> VScode -> git clone (https://github.com/Enzo-Stefano/info_php_26);
 - "localhost/" == "/var/www/html/" 
 
 DIA 17/03/26:

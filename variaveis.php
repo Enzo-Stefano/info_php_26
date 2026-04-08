@@ -87,27 +87,66 @@ echo "<br><br>$numero é $msg";
  * Informar "Aprovado" ou "Reprovado" + média obtida;
 */
 $msg = "Aprovado";
-$nota1 = 10;
-$nota2 = 5;
-$nota3 = 5;
+$nota1 = 15;
+$nota2 = 10;
+$nota3 = 6;
 $media = ($nota1 + $nota2 + $nota3)/3;
 $mediaArredondada = round($media, 2);
 
 if($media<7){
     $msg = "Reprovado";
 }
-echo "<br><br>Você foi $msg<br>Médias:<br>Normal: $media";
+echo "<br><br>Você foi $msg<br>Médias:<br>Normal: $mediaArredondada";
 
 /**
  * Nota do Aluno média harmônica
 */
 $mediaHarmonica = 3/((1/$nota1)+(1/$nota2)+(1/$nota3));
-echo "<br>Harmônica: $mediaHarmonica";
+echo "<br>Harmônica: ". round($mediaHarmonica, 2);
 /**
  * Nota do Aluno média ponderada
 */
-$mediaPonderada =(($nota1*10)+($nota2*10)+($nota3*10))/(10+10+10);
-echo "<br>Ponderada: $mediaPonderada";
+$peso1 = 10;
+$peso2 = 10;
+$peso3 = 10;
+$mediaPonderada =(($nota1*$peso1)+($nota2*$peso2)+($nota3*$peso3))/($peso1 + $peso2 + $peso3);
+echo "<br>Ponderada: " . round($mediaPonderada, 2). "<br>";
+
+// LOOPS
+echo "FOR:";
+$numerador;
+$multiplicador;
+for($numerador=1;$numerador<=10;$numerador++){
+    echo "<br><br>Tabuada do $numerador:";
+    for($multiplicador=1;$multiplicador<=10;$multiplicador++){
+        echo "<br>$numerador x $multiplicador = ". $numerador*$multiplicador;
+    }
+}
+
+echo "<br><br>WHILE:";
+$numerador = 1;
+$multiplicador = 0;
+while($multiplicador <= 10){
+    echo "<br>$numerador x $multiplicador = ". $numerador*$multiplicador;
+    $multiplicador++;
+    if($multiplicador > 10){
+        echo "<br>";
+        $numerador++;
+        $multiplicador = 0;
+    }
+    if($numerador>10){
+        break;
+    }
+}
+
+echo "<br><br>DO_WHILE:";
+$numerador = 4;
+$multiplicador = 0;
+do{
+    echo "<br>$numerador x $multiplicador = ". $numerador*$multiplicador;
+    $multiplicador++;
+}while($multiplicador <= 10);
+
 
 
 echo "<br><br>";
