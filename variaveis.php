@@ -147,7 +147,17 @@ do{
     $multiplicador++;
 }while($multiplicador <= 10);
 
-
+// Listar 10 primeiros números pares
+$numero = 0;
+$contador = 1;
+echo "<br><br>Primeiros 10 pares:";
+while($contador <= 10){
+    if($numero % 2 == 0 && $numero > 0){
+        echo "<br>$contador º- $numero;";
+        $contador++;
+    }
+    $numero++; 
+}
 
 echo "<br><br>";
 echo Date("d/m/Y  H:i:s"); // Brasil-sil-sil
