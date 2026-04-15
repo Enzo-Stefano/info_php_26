@@ -68,7 +68,7 @@ $base = 10;
 $altura = 10;
 $area = ($base * $altura)/2; 
 echo "<br>A area de um triangulo equilatero de base $base e altura $altura é de: $area";
- 
+
 
 /**
  * Ler um número informado pelo usuário e exibir se o número é par ou ímpar.
@@ -158,6 +158,136 @@ while($contador <= 10){
     }
     $numero++; 
 }
+
+// EXERCICIOS de REVISAO AULA 14/04/2026.
+/**
+ * Calcular IMC(Indice de Massa Corporal) de uma pessoa e
+ * exibir os valores utilizados no calculo assim como o seu IMC.
+ * Saída esperada: O IMC é: 123
+ */
+
+$peso = 75;
+$altura = 1.75;
+$IMC = $peso/$altura**2;
+$IMC = round($IMC, 2);
+echo "<br><br>Peso: $peso<br>Altura: $altura M<br>IMC = $IMC";
+
+/**
+ * Calcular quantos segundos tem em 2 horas e 30 minutos e exibir o valor.
+ *
+ * Dica: converter tudo para uma mesma medida (segundos) para facilitar o calculo.
+ *
+ * Saída esperada: O Total em segundos é: 9000.
+ */
+$hora = 2;
+$minuto = 30;
+$segundos = $hora*3600 + $minuto*60;
+echo "<br><br>Em $hora horas(s) e $minuto minuto(s)<br>O Total em segundos é: $segundos";
+
+/**
+ * Simular o funcionamento de uma calculadora com as duas estruturas lógicas:
+ * Switch Case e IF ELSE IF ELSE. Não é necessário o ZERAR, somente o calculo.
+ * Operadores: + - * /
+ *
+ * Dica: utilizar 4 variáveis, uma delas vai ser $operador a outra $resultado.
+ */
+
+$numero1 = 1;
+$numero2 = 2;
+$operador = '/';
+$resultado;
+switch($operador){
+    case '+':
+        $resultado = $numero1 + $numero2;
+        echo "<br><br>$resultado";
+        break;
+    case '-':
+        $resultado = $numero1 - $numero2;
+        echo "<br><br>$resultado";
+        break;
+    case '*':
+        $resultado = $numero1 * $numero2;
+        echo "<br><br>$resultado";
+        break;
+    case '/':
+        $resultado = $numero1 / $numero2;
+        echo "<br><br>$resultado";
+        break;
+}
+
+/**
+ * Exibir os numeros em ordem DECRESCENTE(Maior para Menor - DESC) de 10 - 0.
+ *
+ * Dica: utilizar laçoes de repetição(loops) FOR e WHILE
+ *
+ * Saída esperada: 10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0.
+ */
+$numero = 10;
+$saida = "<br>";
+while($numero>=0){
+    if($numero == 0){
+        $saida = $saida . " $numero.";
+    }else{
+        $saida = $saida . " $numero,";
+    }
+    $numero--;
+}
+echo $saida;
+
+/**
+ * Calcular o fatorial de um numero qualquer.
+ * Ex.: calcular o fatorial de 5 (5!).
+ *
+ * Dica: 5 x 4 x 3 x 2 x 1. utilizar laçoes de repetição(loops) FOR e WHILE
+ *
+ * Saída esperada: o fatorial de 5 é: 120.
+ */
+
+$numero = 5;
+$resultado = $numero;
+echo "<br>o fatorial de $numero é: ";
+for ($numero = 4; $numero>0; $numero--) {
+        $resultado = $resultado * $numero;
+}
+echo "$resultado";
+
+/**
+ * Com base no exercicio de:
+ * Listar os 10 primeiros numeros pares com laçoes de repetição(loops) utilizando FOR e WHILE.
+ *
+ * Encontrar os 5 primeiros numeros Primos.
+ *
+ * Dica: Utilizar calculo dos pares, sendo que o unico primo par é o 2.
+ *
+ * Saída esperada: Os 5 primeiros Primos são: 3, 5, 7, 11, 13
+ */
+
+
+$saida = "<br>Os 5 primeiros Primos são: ";
+$numero = 3;
+$posicao = 5;
+while($posicao > 0){
+    $aux = 2;
+    $verificador = 0;
+    while($aux<=$numero){
+        if($numero % $aux == 0){
+            $verificador++;
+        }
+        if($verificador>=2){
+            break;
+        }
+        $aux++;
+    }
+    if($verificador == 1){
+        $saida = $saida . " $numero";
+        if($posicao>1){
+            $saida = $saida . ",";
+        }
+        $posicao--;
+    }
+    $numero++;
+}
+echo $saida;
 
 echo "<br><br>";
 echo Date("d/m/Y  H:i:s"); // Brasil-sil-sil
