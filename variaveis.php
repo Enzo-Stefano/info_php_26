@@ -185,6 +185,12 @@ $segundos = $hora*3600 + $minuto*60;
 echo "<br><br>Em $hora horas(s) e $minuto minuto(s)<br>O Total em segundos é: $segundos";
 
 /**
+ * jogo futebol
+ */
+$tempoJogoMinutos = 90;
+
+
+/**
  * Simular o funcionamento de uma calculadora com as duas estruturas lógicas:
  * Switch Case e IF ELSE IF ELSE. Não é necessário o ZERAR, somente o calculo.
  * Operadores: + - * /
