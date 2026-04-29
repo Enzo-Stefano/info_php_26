@@ -250,12 +250,11 @@ echo $saida;
  */
 
 $numero = 5;
-$resultado = $numero;
-echo "<br>o fatorial de $numero é: ";
-for ($numero = 4; $numero>0; $numero--) {
-        $resultado = $resultado * $numero;
+$resultado = 1;
+for ($i = $numero; $i>0; $i--) {
+    $resultado *= $i;
 }
-echo "$resultado";
+echo "<br>o fatorial de $numero é: $resultado";
 
 /**
  * Com base no exercicio de:
@@ -268,32 +267,62 @@ echo "$resultado";
  * Saída esperada: Os 5 primeiros Primos são: 3, 5, 7, 11, 13
  */
 
-
-$saida = "<br>Os 5 primeiros Primos são: ";
-$numero = 3;
 $posicao = 5;
+$saida = "<br>Os $posicao primeiros Primos são: ";
+$numero = 3;
 while($posicao > 0){
-    $aux = 2;
+    $divisor = 2;
     $verificador = 0;
-    while($aux<=$numero){
-        if($numero % $aux == 0){
+    while($divisor<$numero){
+        if($numero % $divisor == 0){
             $verificador++;
-        }
-        if($verificador>=2){
             break;
         }
-        $aux++;
+        $divisor++;
     }
-    if($verificador == 1){
+    if($verificador == 0){
         $saida = $saida . " $numero";
         if($posicao>1){
-            $saida = $saida . ",";
+            $saida .= ",";
         }
         $posicao--;
     }
     $numero++;
 }
 echo $saida;
+
+/**
+ * Calcular o tempo de duração de um jogo de futebol.
+ * Considerando que um jogo pode começar em um dia e terminar no outro.
+ * Ex.: 23:30 - 01:00
+ * 
+ * Dica: converter tudo para uma mesma medida (segundos) para facilitar o cálculo.
+ * 
+ * Saída esperada: O tempo de duração do jogo é: 90 minutos.
+ */
+
+$horaInicio = "14:30:00";
+$duracaoJogoMinutos = 90;
+$acrescimos = 5;
+$tempoArray = explode (":", $horaInicio);
+
+$horas = $tempoArray[0];
+$minutos = $tempoArray[1];
+$segundos = $tempoArray[2];
+
+$minutos += $horas * 60;
+$minutos += $duracaoJogoMinutos + $acrescimos;
+$horas = (int)($minutos/60);
+
+if($horas >= 24){
+    $horas-=24;
+}
+$minutos %= 60;
+$minutos = str_pad($minutos, 2, "0", STR_PAD_LEFT);
+$horas = str_pad($horas, 2, "0", STR_PAD_LEFT);
+$horaFinal = "$horas:$minutos:$segundos";
+
+echo "<br>O horário de término da partida é: $horaFinal.";
 
 echo "<br><br>";
 echo Date("d/m/Y  H:i:s"); // Brasil-sil-sil
