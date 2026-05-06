@@ -114,12 +114,13 @@ echo "<br>Ponderada: " . round($mediaPonderada, 2). "<br>";
 
 // LOOPS
 echo "FOR:";
-$numerador;
+$numerador = 0;
 $multiplicador;
+
 for($numerador=1;$numerador<=10;$numerador++){
-    echo "<br><br>Tabuada do $numerador:";
+    echo "<br><br>Tabuada do $numerador:<br>";
     for($multiplicador=1;$multiplicador<=10;$multiplicador++){
-        echo "<br>$numerador x $multiplicador = ". $numerador*$multiplicador;
+        echo " $numerador x $multiplicador = ". $numerador*$multiplicador;
     }
 }
 
@@ -201,7 +202,7 @@ $tempoJogoMinutos = 90;
 $numero1 = 1;
 $numero2 = 2;
 $operador = '/';
-$resultado;
+$resultado = 0;
 switch($operador){
     case '+':
         $resultado = $numero1 + $numero2;
