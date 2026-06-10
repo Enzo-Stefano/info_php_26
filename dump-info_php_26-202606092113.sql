@@ -31,8 +31,10 @@ CREATE TABLE `Pessoa` (
   `cnpj` varchar(18) DEFAULT NULL,
   `tipoPessoa` enum('F','J') NOT NULL DEFAULT 'F',
   `idEndereco` tinyint(4) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  PRIMARY KEY (`id`),
+  KEY `Pessoa_endereco_FK` (`idEndereco`),
+  CONSTRAINT `Pessoa_endereco_FK` FOREIGN KEY (`idEndereco`) REFERENCES `endereco` (`id`) ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -41,6 +43,7 @@ CREATE TABLE `Pessoa` (
 
 LOCK TABLES `Pessoa` WRITE;
 /*!40000 ALTER TABLE `Pessoa` DISABLE KEYS */;
+INSERT INTO `Pessoa` VALUES (1,'João',20,'54999990000','000.000.000-00',NULL,'F',1),(2,'Zegla',85,'5434555555',NULL,'00000000000','J',5),(3,'Maria',18,'54999880000','000.000.000-00',NULL,'F',1),(4,'Seu Jorge',60,'51944445555','000.000.000-00',NULL,'F',3),(5,'Enzo',21,'54996676980','000.000.000-00',NULL,'F',4);
 /*!40000 ALTER TABLE `Pessoa` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -60,7 +63,7 @@ CREATE TABLE `endereco` (
   `rua` varchar(512) NOT NULL,
   `numero` varchar(30) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -69,6 +72,7 @@ CREATE TABLE `endereco` (
 
 LOCK TABLES `endereco` WRITE;
 /*!40000 ALTER TABLE `endereco` DISABLE KEYS */;
+INSERT INTO `endereco` VALUES (1,'RS','Bento Gonçalves','95700000','Centro','General Osório','444'),(2,'RS','Caxias do Sul','95707000','Universitário','Principal','102'),(3,'RJ','Rio de Janeiro','80500500','Ipanema','Da Silva','202'),(4,'RS','Bento Gonçalves','95700500','Botafogo','Natal','421'),(5,'RS','Bento Gonçalves','95707000','Borgo','São Paulo','');
 /*!40000 ALTER TABLE `endereco` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -88,8 +92,10 @@ CREATE TABLE `funcionario` (
   `setor` varchar(150) NOT NULL,
   `cracha` varchar(15) NOT NULL,
   `idPessoa` tinyint(4) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  PRIMARY KEY (`id`),
+  KEY `funcionario_Pessoa_FK` (`idPessoa`),
+  CONSTRAINT `funcionario_Pessoa_FK` FOREIGN KEY (`idPessoa`) REFERENCES `Pessoa` (`id`) ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -98,6 +104,7 @@ CREATE TABLE `funcionario` (
 
 LOCK TABLES `funcionario` WRITE;
 /*!40000 ALTER TABLE `funcionario` DISABLE KEYS */;
+INSERT INTO `funcionario` VALUES (1,'Enzo','Massutti',2000,'Técnico','TI','2561532221',5),(2,'Seu','Jorge',100000,'Cantor','Rádio','2222222222',4);
 /*!40000 ALTER TABLE `funcionario` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -114,4 +121,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2026-06-02 21:37:25
+-- Dump completed on 2026-06-09 21:13:13
