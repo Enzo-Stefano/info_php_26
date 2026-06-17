@@ -60,3 +60,7 @@ set session sql_mode = 'No_engine_substitution';
 -- Retornar tudo(usuario + Pessoa_fisica) se encontrar -- senao retorna os dados de usuario select u.* from usuario as u left join pessoa_fisica as pf ON u.id = pf.usuario_alteracao;
 
 -- Retornar tudo(Pessoa_fisica + usuario) se encontrar -- senao retorna os dados da Pessoa_fisica select u.* from usuario as u right join pessoa_fisica as pf ON u.id = pf.usuario_alteracao;
+
+-- Deixa a data e hora automatica no insert e update
+ALTER TABLE info_php_26.estados MODIFY COLUMN criadoEm TIMESTAMP DEFAULT CURRENT_TIMESTAMP;
+ALTER TABLE info_php_26.estados MODIFY COLUMN atualizadoEm TIMESTAMP DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP;
