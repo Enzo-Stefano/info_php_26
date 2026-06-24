@@ -43,6 +43,10 @@ DIA 17/03/26:
 git flow
 - criação da branch dev
 
+linux:
+    sudo service mariadb start
+    sudo mysql -uroot -p
+
 #mariadb
 
 CREATE database info_php_26;
@@ -51,7 +55,10 @@ CREATE USER 'aluno'@localhost IDENTIFIED BY '1234';
 
 GRANT ALL PRIVILEGES ON *.* TO 'aluno'@localhost IDENTIFIED BY '1234';
 
+flush privileges;
+
 https://phoenixnap.com/kb/how-to-create-mariadb-user-grant-privileges#:~:text=To%20create%20a%20new%20MariaDB, to%20a%20local%20MySQL%20server.
+
 
 set session sql_mode = 'No_engine_substitution';
 
@@ -64,3 +71,15 @@ set session sql_mode = 'No_engine_substitution';
 -- Deixa a data e hora automatica no insert e update
 ALTER TABLE info_php_26.estados MODIFY COLUMN criadoEm TIMESTAMP DEFAULT CURRENT_TIMESTAMP;
 ALTER TABLE info_php_26.estados MODIFY COLUMN atualizadoEm TIMESTAMP DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP;
+
+ALTER TABLE info_php_26.cidades MODIFY COLUMN criadoEm TIMESTAMP DEFAULT CURRENT_TIMESTAMP;
+ALTER TABLE info_php_26.cidades MODIFY COLUMN atualizadoEm TIMESTAMP DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP;
+
+ALTER TABLE info_php_26.endereco MODIFY COLUMN criadoEm TIMESTAMP DEFAULT CURRENT_TIMESTAMP;
+ALTER TABLE info_php_26.endereco MODIFY COLUMN atualizadoEm TIMESTAMP DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP;
+
+ALTER TABLE info_php_26.funcionario MODIFY COLUMN criadoEm TIMESTAMP DEFAULT CURRENT_TIMESTAMP;
+ALTER TABLE info_php_26.funcionario MODIFY COLUMN atualizadoEm TIMESTAMP DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP;
+
+ALTER TABLE info_php_26.pessoa MODIFY COLUMN criadoEm TIMESTAMP DEFAULT CURRENT_TIMESTAMP;
+ALTER TABLE info_php_26.pessoa MODIFY COLUMN atualizadoEm TIMESTAMP DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP;
