@@ -26,13 +26,13 @@ CREATE TABLE `cidades` (
   `id` tinyint(4) NOT NULL AUTO_INCREMENT,
   `nome` varchar(100) NOT NULL,
   `populacao` decimal(10,0) NOT NULL,
-  `criadoEm` timestamp NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
-  `atualizadoEm` timestamp NULL DEFAULT '0000-00-00 00:00:00',
+  `criadoEm` timestamp NOT NULL DEFAULT current_timestamp(),
+  `atualizadoEm` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00' ON UPDATE current_timestamp(),
   `idEstado` tinyint(4) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `cidades_estados_FK` (`idEstado`),
   CONSTRAINT `cidades_estados_FK` FOREIGN KEY (`idEstado`) REFERENCES `estados` (`id`) ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -41,6 +41,7 @@ CREATE TABLE `cidades` (
 
 LOCK TABLES `cidades` WRITE;
 /*!40000 ALTER TABLE `cidades` DISABLE KEYS */;
+INSERT INTO `cidades` VALUES (1,'Bento Gonçalves',100,'2026-06-23 22:59:58','0000-00-00 00:00:00',1),(2,'Caxias do Sul',101,'2026-06-23 23:00:31','0000-00-00 00:00:00',1),(3,'Rio de Janeiro',102,'2026-06-23 23:01:05','0000-00-00 00:00:00',2);
 /*!40000 ALTER TABLE `cidades` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -57,8 +58,8 @@ CREATE TABLE `endereco` (
   `bairro` varchar(255) NOT NULL,
   `rua` varchar(512) NOT NULL,
   `numero` varchar(30) DEFAULT NULL,
-  `criadoEm` timestamp NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
-  `atualizadoEm` timestamp NULL DEFAULT '0000-00-00 00:00:00',
+  `criadoEm` timestamp NOT NULL DEFAULT current_timestamp(),
+  `atualizadoEm` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00' ON UPDATE current_timestamp(),
   `idEstado` tinyint(4) DEFAULT NULL,
   `idCidade` tinyint(4) DEFAULT NULL,
   PRIMARY KEY (`id`),
@@ -75,7 +76,7 @@ CREATE TABLE `endereco` (
 
 LOCK TABLES `endereco` WRITE;
 /*!40000 ALTER TABLE `endereco` DISABLE KEYS */;
-INSERT INTO `endereco` VALUES (1,'95700000','Centro','General Osório','444','2026-06-17 00:08:43','0000-00-00 00:00:00',NULL,NULL),(2,'95707000','Universitário','Principal','102','2026-06-17 00:08:43','0000-00-00 00:00:00',NULL,NULL),(3,'80500500','Ipanema','Da Silva','202','2026-06-17 00:08:43','0000-00-00 00:00:00',NULL,NULL),(4,'95700500','Botafogo','Natal','421','2026-06-17 00:08:43','0000-00-00 00:00:00',NULL,NULL),(5,'95707000','Borgo','São Paulo','','2026-06-17 00:08:43','0000-00-00 00:00:00',NULL,NULL);
+INSERT INTO `endereco` VALUES (1,'95700000','Centro','General Osório','444','2026-06-17 00:08:43','2026-06-23 23:02:48',1,2),(2,'95707000','Universitário','Principal','102','2026-06-17 00:08:43','2026-06-23 23:02:48',1,2),(3,'80500500','Ipanema','Da Silva','202','2026-06-17 00:08:43','2026-06-23 23:02:48',2,3),(4,'95700500','Botafogo','Natal','421','2026-06-17 00:08:43','2026-06-23 23:02:48',1,1),(5,'95707000','Borgo','São Paulo','','2026-06-17 00:08:43','2026-06-23 23:02:49',1,1);
 /*!40000 ALTER TABLE `endereco` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -95,7 +96,7 @@ CREATE TABLE `estados` (
   `criadoEm` timestamp NOT NULL DEFAULT current_timestamp(),
   `atualizadoEm` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00' ON UPDATE current_timestamp(),
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -104,7 +105,7 @@ CREATE TABLE `estados` (
 
 LOCK TABLES `estados` WRITE;
 /*!40000 ALTER TABLE `estados` DISABLE KEYS */;
-INSERT INTO `estados` VALUES (1,'Rio Gande do Sul','RS',200,2,'2026-06-17 00:51:21','2026-06-17 00:51:31');
+INSERT INTO `estados` VALUES (1,'Rio Gande do Sul','RS',200,2,'2026-06-17 00:51:21','2026-06-17 00:51:31'),(2,'Rio de Janeiro','RJ',201,1,'2026-06-23 22:59:09','0000-00-00 00:00:00');
 /*!40000 ALTER TABLE `estados` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -124,8 +125,8 @@ CREATE TABLE `funcionario` (
   `setor` varchar(150) NOT NULL,
   `cracha` varchar(15) NOT NULL,
   `idPessoa` tinyint(4) DEFAULT NULL,
-  `criadoEm` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
-  `atualizadoEm` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `criadoEm` timestamp NOT NULL DEFAULT current_timestamp(),
+  `atualizadoEm` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00' ON UPDATE current_timestamp(),
   PRIMARY KEY (`id`),
   KEY `funcionario_Pessoa_FK` (`idPessoa`),
   CONSTRAINT `funcionario_Pessoa_FK` FOREIGN KEY (`idPessoa`) REFERENCES `pessoa` (`id`) ON UPDATE CASCADE
@@ -158,8 +159,8 @@ CREATE TABLE `pessoa` (
   `cnpj` varchar(18) DEFAULT NULL,
   `tipoPessoa` enum('F','J') NOT NULL DEFAULT 'F',
   `idEndereco` tinyint(4) DEFAULT NULL,
-  `criadoEm` timestamp NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
-  `atualizadoEm` timestamp NULL DEFAULT '0000-00-00 00:00:00',
+  `criadoEm` timestamp NOT NULL DEFAULT current_timestamp(),
+  `atualizadoEm` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00' ON UPDATE current_timestamp(),
   PRIMARY KEY (`id`),
   KEY `Pessoa_endereco_FK` (`idEndereco`),
   CONSTRAINT `Pessoa_endereco_FK` FOREIGN KEY (`idEndereco`) REFERENCES `endereco` (`id`) ON UPDATE CASCADE
@@ -189,4 +190,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2026-06-16 21:54:18
+-- Dump completed on 2026-06-23 22:01:37
