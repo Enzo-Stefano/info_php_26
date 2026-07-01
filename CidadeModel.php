@@ -1,9 +1,9 @@
 <?php
 // CRUD - Create, Read, Update, Delete
 
-class FuncionarioModel {
+class CidadeModel {
     private $banco;
-    private $tabela = "funcionario";
+    private $tabela = "cidades";
 
     public function __construct(BancoDeDados $banco)
     {
@@ -28,7 +28,7 @@ class FuncionarioModel {
 
         $sql .= " LIMIT $limite OFFSET $offset";
 
-        return $this->banco->execQuery($sql, "Não foi possivel obter os funcionarios.");
+        return $this->banco->execQuery($sql, "Não foi possivel obter as cidades.");
     }
 
     public function listarPorId($id){
@@ -44,16 +44,16 @@ class FuncionarioModel {
             $sql .= " WHERE " . implode(" AND ", $where);
         }
 
-        return $this->banco->execQuery($sql, "Não foi possível obter os funcionários.");
+        return $this->banco->execQuery($sql, "Não foi possível obter as cidades.");
     }
-
+    
     public function excluir($id)
     {
         $sql = "DELETE FROM {$this->tabela} WHERE id = $id";
 
-        return $this->banco->execQuery($sql, "Não foi possivel excluir o funcionario.");
+        return $this->banco->execQuery($sql, "Não foi possivel excluir a cidade.");
     }
-    
+
     public function criar($dados) {
 
         $campos = implode(", ", array_keys($dados));
@@ -61,7 +61,7 @@ class FuncionarioModel {
 
         $sql = "INSERT INTO {$this->tabela} ($campos) VALUES ('$valores')";
 
-        return $this->banco->execQuery($sql, "Não foi possivel criar o funcionario.");
+        return $this->banco->execQuery($sql, "Não foi possivel criar a cidade.");
     }
 
     public function atualizar($id, $dados) {
@@ -77,4 +77,4 @@ class FuncionarioModel {
 
         return $this->banco->execQuery($sql, "Não foi possivel atualizar o funcionario.");
     }
-}   
+}

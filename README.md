@@ -69,17 +69,28 @@ set session sql_mode = 'No_engine_substitution';
 -- Retornar tudo(Pessoa_fisica + usuario) se encontrar -- senao retorna os dados da Pessoa_fisica select u.* from usuario as u right join pessoa_fisica as pf ON u.id = pf.usuario_alteracao;
 
 -- Deixa a data e hora automatica no insert e update
-ALTER TABLE info_php_26.estados MODIFY COLUMN criadoEm TIMESTAMP DEFAULT CURRENT_TIMESTAMP;
-ALTER TABLE info_php_26.estados MODIFY COLUMN atualizadoEm TIMESTAMP DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP;
+Adição de campo de controle
+    ALTER TABLE info_php_26.estados MODIFY COLUMN criadoEm TIMESTAMP DEFAULT CURRENT_TIMESTAMP;
+    ALTER TABLE info_php_26.estados MODIFY COLUMN atualizadoEm TIMESTAMP DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP;
 
-ALTER TABLE info_php_26.cidades MODIFY COLUMN criadoEm TIMESTAMP DEFAULT CURRENT_TIMESTAMP;
-ALTER TABLE info_php_26.cidades MODIFY COLUMN atualizadoEm TIMESTAMP DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP;
+    ALTER TABLE info_php_26.cidades MODIFY COLUMN criadoEm TIMESTAMP DEFAULT CURRENT_TIMESTAMP;
+    ALTER TABLE info_php_26.cidades MODIFY COLUMN atualizadoEm TIMESTAMP DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP;
 
-ALTER TABLE info_php_26.endereco MODIFY COLUMN criadoEm TIMESTAMP DEFAULT CURRENT_TIMESTAMP;
-ALTER TABLE info_php_26.endereco MODIFY COLUMN atualizadoEm TIMESTAMP DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP;
+    ALTER TABLE info_php_26.endereco MODIFY COLUMN criadoEm TIMESTAMP DEFAULT CURRENT_TIMESTAMP;
+    ALTER TABLE info_php_26.endereco MODIFY COLUMN atualizadoEm TIMESTAMP DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP;
 
-ALTER TABLE info_php_26.funcionario MODIFY COLUMN criadoEm TIMESTAMP DEFAULT CURRENT_TIMESTAMP;
-ALTER TABLE info_php_26.funcionario MODIFY COLUMN atualizadoEm TIMESTAMP DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP;
+    ALTER TABLE info_php_26.funcionario MODIFY COLUMN criadoEm TIMESTAMP DEFAULT CURRENT_TIMESTAMP;
+    ALTER TABLE info_php_26.funcionario MODIFY COLUMN atualizadoEm TIMESTAMP DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP;
 
-ALTER TABLE info_php_26.pessoa MODIFY COLUMN criadoEm TIMESTAMP DEFAULT CURRENT_TIMESTAMP;
-ALTER TABLE info_php_26.pessoa MODIFY COLUMN atualizadoEm TIMESTAMP DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP;
+    ALTER TABLE info_php_26.pessoa MODIFY COLUMN criadoEm TIMESTAMP DEFAULT CURRENT_TIMESTAMP;
+    ALTER TABLE info_php_26.pessoa MODIFY COLUMN atualizadoEm TIMESTAMP DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP;
+
+MVC:
+    Model = banco de dados;
+    View = interface do usuário;
+    Controller = validar dados, regras de negócio, criar OU atualizar;
+
+DDD (segue as regra da empresa):
+    Domain
+    Driven
+    Development
