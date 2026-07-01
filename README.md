@@ -94,3 +94,8 @@ DDD (segue as regra da empresa):
     Domain
     Driven
     Development
+
+Comm Navegador X back:
+    $_GET // (oq o navegador faz)(sempre busca)id, nome ...
+    $_POST // (Javascript)(Busca mas foco em envio) nome, sobrenome
+    $_REQUEST // (requisições) *
