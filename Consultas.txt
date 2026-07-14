@@ -1,9 +1,0 @@
-SELECT p.nome, f.cargo, f.salario, p.idade 
-FROM funcionario f
-RIGHT JOIN Pessoa p ON f.idPessoa = p.id;
-
-SELECT *
-FROM funcionario f
-RIGHT JOIN Pessoa p ON f.nome = p.nome;
-
-SELECT * FROM funcionario f;
