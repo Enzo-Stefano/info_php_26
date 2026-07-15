@@ -150,10 +150,11 @@ class FuncionarioController
         try {
             $this->funcionarioModel->excluir((int) $id);
 
-            $_SESSION["flash"]["sucesso"] = "Funcionário {$id} foi excluido.";
+            $this->adicionarMensagemSucessoFlash("Funcionário {$id} foi excluido.");
 
             $this->redirecionarParaFuncionarios();
         } catch (Exception $erro) {
+            $msgErro = "Erro ao excluir funcionario";
             echo "<p>Erro ao excluir funcionário: {$erro->getMessage()}</p>";
         }
     }
