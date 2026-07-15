@@ -1,6 +1,6 @@
 <?php
 
-class Funcionario {
+class FuncionarioEntity {
     private $nome;
     private $populacao;
 
@@ -33,5 +33,5 @@ class Funcionario {
     }
 }
 
-$funcionario = new Funcionario("Enzo", 2000, "TI", "Técnico de Infra");
+$funcionario = new FuncionarioEntity("Enzo", 2000, "TI", "Técnico de Infra");
 echo $funcionario->info();

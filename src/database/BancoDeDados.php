@@ -17,6 +17,8 @@ class BancoDeDados {
 
         $isCreate = str_contains($sql, "INSERT");
         $isUpdate = str_contains($sql, "UPDATE");
+        $isDelete = str_contains($sql, "DELETE");
+
 
         $result = $this->conexao->query($sql);
         
@@ -24,7 +26,7 @@ class BancoDeDados {
             return $this->conexao->insert_id;
         }
 
-        if ($isUpdate) {
+        if ($isUpdate || $isDelete) {
             return $this->conexao->affected_rows;
         }
 

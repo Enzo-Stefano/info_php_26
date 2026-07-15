@@ -16,8 +16,17 @@ class FuncionarioController
             $registros = $this->funcionarioModel->listar();
 
             $funcionarios = array_map(function ($registro) {
-                return Funcionario::criarPorDados($registro);
+                return FuncionarioEntity::criarPorDados($registro);
             }, $registros);
+
+            $mensagem = $_SESSION["flash"]["sucesso"] ?? "";
+
+            if(!empty($mensagem)) {
+                $html = "<p><strong>$mensagem</strong></p>";
+                echo $html;
+                unset($_SESSION["flash"]);
+            }
+
         } catch (Exception $erro) {
             $funcionarios = [];
         }
@@ -77,14 +86,16 @@ class FuncionarioController
     {
         $titulo = "Novo funcionário";
         $action = "/info_php_26/funcionarios";
-        $funcionarioFormulario = new Funcionario();
+        $funcionarioFormulario = new FuncionarioEntity();
 
-        require __DIR__ . "/form-funcionario.php";
+        $rotaRaiz = dirname(__DIR__, 2);
+
+        require $rotaRaiz . "/src/views/form-funcionario.php";
     }
 
     public function criar(): void
     {
-        $funcionario = Funcionario::criarPorDados($this->obterDadosFormulario());
+        $funcionario = FuncionarioEntity::criarPorDados($this->obterDadosFormulario());
 
         try {
             $this->funcionarioModel->criar($funcionario->toArrayParaBanco());
@@ -105,7 +116,7 @@ class FuncionarioController
                 return;
             }
 
-            $funcionarioFormulario = Funcionario::criarPorDados($registros[0]);
+            $funcionarioFormulario = FuncionarioEntity::criarPorDados($registros[0]);
         } catch (Exception $erro) {
             echo "<p>Funcionário não encontrado.</p>";
             return;
@@ -114,15 +125,19 @@ class FuncionarioController
         $titulo = "Editar funcionário";
         $action = "/info_php_26/funcionarios/{$id}";
 
-        require __DIR__ . "/form-funcionario.php";
+        $rotaRaiz = dirname(__DIR__, 2);
+
+        require $rotaRaiz . "/src/views/form-funcionario.php";
     }
 
     public function atualizar(int|string $id): void
     {
-        $funcionario = Funcionario::criarPorDados($this->obterDadosFormulario());
+        $funcionario = FuncionarioEntity::criarPorDados($this->obterDadosFormulario());
 
         try {
             $this->funcionarioModel->atualizar((int) $id, $funcionario->toArrayParaBanco());
+
+            
 
             $this->redirecionarParaFuncionarios();
         } catch (Exception $erro) {
@@ -134,6 +149,8 @@ class FuncionarioController
     {
         try {
             $this->funcionarioModel->excluir((int) $id);
+
+            $_SESSION["flash"]["sucesso"] = "Funcionário {$id} foi excluido.";
 
             $this->redirecionarParaFuncionarios();
         } catch (Exception $erro) {
@@ -158,5 +175,14 @@ class FuncionarioController
     {
         header("Location: /info_php_26/funcionarios");
         exit;
+    }
+
+    
+    private function adicionarMensagemSucessoFlash($mensagem) {
+        $_SESSION["flash"]["sucesso"] = $mensagem;
+    }
+
+    private function adicionarMensagemErroFlash($mensagem) {
+        $_SESSION["flash"]["erro"] = $mensagem;
     }
 }
